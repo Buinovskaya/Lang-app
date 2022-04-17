@@ -1,22 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from '../../App.module.css'
+import { Store } from "../../context";
 
-export const Learn = ({ library, wordIndex, speak, setWordIndex }) => {
-    
+export const Learn = () => {
+
+    const data = useContext(Store)
+
     useEffect(()=>{
-        speak(library[wordIndex].translate)
-    },[wordIndex])
+        data.speak(data.library[data.wordIndex].translate)
+    },[data.wordIndex])
     
 
     return (
         <div>
-            <ProgressBar library={library} wordIndex={wordIndex}/>
+            <ProgressBar library={data.library} wordIndex={data.wordIndex}/>
             <section style={{textAlign:'center'}} >
-                <span>{library[wordIndex].word}</span>
-                <h3>{library[wordIndex].translate}</h3>
+                <span>{data.library[data.wordIndex].word}</span>
+                <h3>{data.library[data.wordIndex].translate}</h3>
             </section>
-            <div onClick={() => {wordIndex === library.length - 1 ? setWordIndex(0) : setWordIndex(wordIndex + 1)}} className={styles.btnNext}></div>
+            <div onClick={() => {data.wordIndex === data.library.length - 1 ? data.setWordIndex(0) : data.setWordIndex(data.wordIndex + 1)}} className={styles.btnNext}></div>
         </div>
         
     )

@@ -5,7 +5,7 @@ import styles from './Nav.module.css'
 export const Nav = () => {
     return (
         <nav className={styles.nav}>
-            <NavLink to='/dashboard'>
+            <NavLink to='/'>
                 Home
             </NavLink>
             <NavLink to='/games'>
